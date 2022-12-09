@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>View all users</title>
+  <link rel="stylesheet" href="style/header_footer.css">
+  <link rel="stylesheet" href="style/logged_admin.css">
+  <link rel="stylesheet" href="style/view1.css">
+  </head>
+<body>
+  <header>
+    <div class="logo_container">
+      <img src="images/logo.png" alt="TicketSell logo">
+    </div>
+    <div class="ticketsell_title">
+      <a href="index.jsp">ticketsell</a>
+    </div>
+    <% if (session.getAttribute("userid") == null) { %>
+    <!-- SIGN IN AND LOG IN BUTTONS -->
+    <div class="buttons_container">
+      <button class="signup_button"  onclick="window.location.href='registerUser.jsp';">Sign up</button>
+      <button class="login_button" onclick="window.location.href='loginPage.jsp';">Log in</button>
+    </div>
+    <%} else { %>
+    <!-- REGISTERED HEADER CHANGES -->
+    <div class="registered_container">
+      <img id="messages" src="images/icons/dm.png" alt="send a message" />
+      <div id="profile_info_div">
+        <img id="user-profile-pic" src="images/avatars/default.png" alt="User's profile picture" />
+        <label id="username-label">Admin</label>
+      </div>
+      <button class="logout_button" onclick="window.location.href='logout.jsp'">Log out</button>
+    </div>
+    <%}%>
+  </header>
+    
+  <h1 id="page_title">All events:</h1>
+  <div class="all_tables">
+  <table>
+    <tr th:each="usuario : ${eventList}">
+      <td>Event id:<span th:text="${event.id}">Default id</span></td>
+	    <td>Event name:<span th:text="${event.eventName}">Default eventName</span></td>
+	    <td>Event venue:<span th:text="${event.venue}">Default venue</span></td>
+	    <td>Event city:<span th:text="${event.city}">Default city</span><br></td>
+	    <td>Event country:<span th:text="${event.country}">Default country</span></td>
+	    <td>Event date:<span th:text="${event.date}">Default date</span></td>
+	    <td>Event category:<span th:text="${event.category}">Default category</span></td>
+	    <td>Event image:<span th:text="${event.image}">Default image</span></td>
+	    
+    </tr>
+    </table>
+  
+  </div>
+  <!-- footer -->
+  <div id="foo"></div>
+  <footer>
+      <div class="logo_container">
+        <img src="images/logo.png" alt="TicketSell logo">
+      </div>
+      <div class="ticketsell_title">
+            <a href="index.jsp">ticketsell</a>
+        </div>
+    </footer>
+</html>
+
+

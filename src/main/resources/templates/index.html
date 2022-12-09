@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Administer ticketsell</title>
+	<link rel="stylesheet" href="style/header_footer.css">
+	<link rel="stylesheet" href="style/logged_admin.css">
+</head>
+<body>
+<h1 id="page_title">ADMINISTER USERS IN TICKETSELL</h1><br>
+	<form method ="POST" action="/pagina-usuario">
+		<label for="email">Search user by email:</label><input id="email" name="email" type="text" value=""/>
+		<input type="Submit" value="search" />
+	</form>
+	<div class="search"><H2>Search user by email</H2>
+		<form th:action="@{/pagina-search-usuario}" method="post">
+			<label>User email:</label>
+			<input type="text" th:value="${email}" name="email">
+			<input type="submit" value="Search" />
+		</form>
+	</div>
+	<p>
+		<a href="pagina-todos-usuarios">View all users</a>
+	</p>
+	<p>
+		<a href="pagina-crear-usuario">Create a user</a>
+	</p>
+	<p>
+		<a href="pagina-borrar-usuario">Delete a user</a>
+	</p>
+	<p>
+		<a href="pagina-update-usuario">Update a user</a>
+	</p>
+<!--
+<h1 id="page_title">ADMINISTER EVENTS IN TICKETSELL</h1><br>
+	<form method ="POST" action="/pagina-evento">
+		<label for="email">Search user by email:</label><input id="email" name="email" type="text" value=""/>
+		<input type="Submit" value="search" />
+	</form>
+	<p>
+		<a href="pagina-todos-eventos">View all users</a>
+	</p>
+	<p>
+		<a href="pagina-crear-evento">Create a user</a>
+	</p>
+	<p>
+		<a href="pagina-borrar-evento">Delete a user</a>
+	</p>
+	<p>
+		<a href="pagina-update-evento">Update a user</a>
+	</p>
+-->
+</body>
+</html>	

@@ -1,0 +1,72 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>View user</title>
+  <link rel="stylesheet" href="style/header_footer.css">
+  <link rel="stylesheet" href="style/logged_admin.css">
+  <link rel="stylesheet" href="style/view1.css">
+  </head>
+<body>
+  <header>
+    <div class="logo_container">
+      <img src="images/logo.png" alt="TicketSell logo">
+    </div>
+    <div class="ticketsell_title">
+      <a href="index.jsp">ticketsell</a>
+    </div>
+    <% if (session.getAttribute("userid") == null) { %>
+    <!-- SIGN IN AND LOG IN BUTTONS -->
+    <div class="buttons_container">
+      <button class="signup_button"  onclick="window.location.href='registerUser.jsp';">Sign up</button>
+      <button class="login_button" onclick="window.location.href='loginPage.jsp';">Log in</button>
+    </div>
+    <%} else { %>
+    <!-- REGISTERED HEADER CHANGES -->
+    <div class="registered_container">
+      <img id="messages" src="images/icons/dm.png" alt="send a message" />
+      <div id="profile_info_div">
+        <img id="user-profile-pic" src="images/avatars/default.png" alt="User's profile picture" />
+        <label id="username-label">Admin</label>
+      </div>
+      <button class="logout_button" onclick="window.location.href='logout.jsp'">Log out</button>
+    </div>
+    <%}%>
+  </header>
+    
+  <h1 id="page_title">Information about the user:</h1>
+  <div class="tables">     
+      User id:<span th:text="${usuario.id}">Default id</span>
+      Name:<span th:text="${usuario.name}">Default name</span>
+      Surname: <span th:text="${usuario.surname}">Default surname</span>
+      Address: <span th:text="${usuario.address}">Default address</span>
+      Alias: <span th:text="${usuario.alias}">Default alias</span>
+      Phone: <span th:text="${usuario.phone}">Default phone</span>
+      Email: <span th:text="${usuario.email}">Default email</span>
+  </div>
+  <div class="table_tick"> 
+    <h2>Tickets in sale</h2>
+    <table>
+      <tr th:each="tickets : ${usuario.tickets}">
+        <td>Ticket id:<span th:text="${ticket.id}">Default id</span></td>
+        <td>Ticket code:<span th:text="${ticket.ticketCode}">Default ticketCode</span></td>
+        <td>Ticket category:<span th:text="${ticket.country}">Default country</span></td>
+        <td>Ticket price:<span th:text="${ticket.price}">Default price</span></td>
+        <td>Ticket user id:<span th:text="${ticket.userID}">Default user id</span></td>
+        <td>Ticket username:<span th:text="${ticket.username}">Default username</span></td>
+        <td>Ticket event:<span th:text="${ticket.event}">Default event</span></td>
+      </tr>
+    </table>
+  </div>
+  <!-- footer -->
+  <div id="foo"></div>
+  <footer>
+      <div class="logo_container">
+        <img src="images/logo.png" alt="TicketSell logo">
+      </div>
+      <div class="ticketsell_title">
+            <a href="index.jsp">ticketsell</a>
+        </div>
+    </footer>
+</html>
+
+

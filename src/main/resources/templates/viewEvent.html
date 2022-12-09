@@ -1,0 +1,73 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View event</title>
+    <link rel="stylesheet" href="style/header_footer.css">
+    <link rel="stylesheet" href="style/logged_admin.css">
+    <link rel="stylesheet" href="style/view1.css">
+    </head>
+<body>
+    <header>
+        <div class="logo_container">
+          <img src="images/logo.png" alt="TicketSell logo">
+        </div>
+        <div class="ticketsell_title">
+          <a href="index.jsp">ticketsell</a>
+        </div>
+        <% if (session.getAttribute("userid") == null) { %>
+        <!-- SIGN IN AND LOG IN BUTTONS -->
+        <div class="buttons_container">
+          <button class="signup_button"  onclick="window.location.href='registerUser.jsp';">Sign up</button>
+          <button class="login_button" onclick="window.location.href='loginPage.jsp';">Log in</button>
+        </div>
+        <%} else { %>
+        <!-- REGISTERED HEADER CHANGES -->
+        <div class="registered_container">
+          <img id="messages" src="images/icons/dm.png" alt="send a message" />
+          <div id="profile_info_div">
+            <img id="user-profile-pic" src="images/avatars/default.png" alt="User's profile picture" />
+            <label id="username-label">Admin</label>
+          </div>
+          <button class="logout_button" onclick="window.location.href='logout.jsp'">Log out</button>
+        </div>
+        <%}%>
+    </header>
+    
+  <h1 id="page_title">Information about the event:</h1>
+  <div class="tables">     
+      <div class="grid-item">Event id:<span th:text="${event.id}">Default id</span></div>
+      <div class="grid-item">Event name:<span th:text="${event.eventName}">Default eventName</span></div>
+      <div class="grid-item">Event venue:<span th:text="${event.venue}">Default venue</span></div>
+      <div class="grid-item">Event city:<span th:text="${event.city}">Default city</span><br></div>
+      <div class="grid-item">Event country:<span th:text="${event.country}">Default country</span></div>
+      <div class="grid-item">Event date:<span th:text="${event.date}">Default date</span></div>
+      <div class="grid-item">Event category:<span th:text="${event.category}">Default category</span></div>
+      <div class="grid-item">Event image:<span th:text="${event.image}">Default image</span></div>
+  </div>
+  <div class="table_tick"> 
+    <h1 id="page_title">Tickets in sale</h1>
+    <table>
+      <tr th:each="tickets : ${usuario.tickets}">
+        <td>Ticket id:<span th:text="${ticket.id}">Default id</span></td>
+        <td>Ticket code:<span th:text="${ticket.ticketCode}">Default ticketCode</span></td>
+        <td>Ticket category:<span th:text="${ticket.country}">Default country</span></td>
+        <td>Ticket price:<span th:text="${ticket.price}">Default price</span></td>
+        <td>Ticket user id:<span th:text="${ticket.userID}">Default user id</span></td>
+        <td>Ticket username:<span th:text="${ticket.username}">Default username</span></td>
+        <td>Ticket event:<span th:text="${ticket.event}">Default event</span></td>
+      </tr>
+    </table>
+  </div>
+  <!-- footer -->
+  <div id="foo"></div>
+  <footer>
+      <div class="logo_container">
+        <img src="images/logo.png" alt="TicketSell logo">
+      </div>
+      <div class="ticketsell_title">
+            <a href="index.jsp">ticketsell</a>
+        </div>
+    </footer>
+</html>
+
+
