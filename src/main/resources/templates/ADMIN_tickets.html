@@ -84,7 +84,7 @@
   </div>
 
     <div class="delete"><H2>Delete ticket</H2>
-    <form th:action="@{/pagina-delete-usuario}" method="post">
+    <form th:action="@{/pagina-delete-ticket}" method="post">
         <label>ticket id: </label>
         <input type="text" th:value="${ticketID}" name="ticketID">
         <input type="submit" value="Submit">

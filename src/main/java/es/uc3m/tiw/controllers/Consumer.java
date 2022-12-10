@@ -69,7 +69,6 @@ public class Consumer {
 		return "viewAllUsers";
 	}
 
-
 	@RequestMapping (value = "pagina-post-usuario", method = RequestMethod.POST)
 	public String saveUser(Model model, @ModelAttribute User us) {
 		User newUser = restTemplate.postForObject("http://localhost:11400/users", us, User.class);
@@ -217,57 +216,54 @@ public class Consumer {
 	// LLAMADAS AL CONTROLADOR
 	@RequestMapping (value = "pagina-ticket/{code}", method = RequestMethod.GET)
 	public String returntickets(Model model, @PathVariable String code) {
-
 		Ticket tick = restTemplate.getForObject("http://localhost:11402/tickets/{code}", Ticket.class, code);
 		model.addAttribute("ticket", tick);
 		return "viewTicket";
 
 	}
-/*
+
 	@RequestMapping (value = "pagina-ticket", method = RequestMethod.POST)
-	public String returnticketsByNameInForm(Model model, @RequestParam String name) {
-		Ticket us = restTemplate.getForObject("http://localhost:11402/tickets/{name}", Ticket.class, name);
-		model.addAttribute("ticket", us);
-		return "viewAllTickets";
-
+	public String returnticketsBycodeInForm(Model model, @RequestParam String code) {
+		Ticket tick = restTemplate.getForObject("http://localhost:11402/tickets/{name}", Ticket.class, code);
+		model.addAttribute("ticket", tick);
+		return "viewTicket";
 	}
-
-
-	@RequestMapping (value = "pagina-todos-tickets", method = RequestMethod.GET)
+		@RequestMapping (value = "pagina-todos-tickets", method = RequestMethod.GET)
 	public String returnTodostickets(Model model) {
-		Ticket[] listaUs = restTemplate.getForObject("http://localhost:11402/tickets", Ticket[].class);
-		model.addAttribute("ticketList", listaUs);
+		Ticket[] listaTk = restTemplate.getForObject("http://localhost:11402/tickets", Ticket[].class);
+		model.addAttribute("ticketList", listaTk);
 		return "viewAllTickets";
 	}
-
 
 	@RequestMapping (value = "pagina-post-ticket", method = RequestMethod.POST)
-	public String saveTicket(Model model, @ModelAttribute Ticket us) {
-		Ticket newTicket = restTemplate.postForObject("http://localhost:11402/tickets", us, Ticket.class);
-		model.addAttribute("ticket", us);
-		return "viewAllTickets";
-	}
-
-	@RequestMapping (value = "pagina-delete-ticket", method = RequestMethod.POST)
-	public String deleteTicket(Model model, @RequestParam String ticketName){
-		Ticket delTicket = restTemplate.getForObject("http://localhost:11402/tickets/{name}", Ticket.class, ticketName);
-		if (delTicket != null) {
-			restTemplate.delete("http://localhost:11402/tickets/{id}", delTicket.getIdticket());
-		}
+	public String saveTicket(Model model, @ModelAttribute Ticket tk) {
+		Ticket newTicket = restTemplate.postForObject("http://localhost:11402/tickets", tk, Ticket.class);
+		model.addAttribute("ticket", tk);
 		return "index_tickets";
 	}
 
-	@RequestMapping (value = "pagina-search-ticket", method = RequestMethod.POST)
-	public String searchtickets(Model model, @RequestParam String name) {
-		Ticket us = restTemplate.getForObject("http://localhost:11402/tickets/{name}", Ticket.class, name);
-		model.addAttribute("ticket", us);
+	@RequestMapping (value = "pagina-delete-ticket", method={RequestMethod.POST, RequestMethod.DELETE})
+	public String deleteTicket(@RequestParam Integer ticket_id){
+		Ticket delTicket = restTemplate.getForObject("http://localhost:11402/tickets/{name}", Ticket.class, ticket_id);
+		if (delTicket != null) {
+			restTemplate.delete("http://localhost:11402/tickets/{id}", ticket_id);
+			return "index_tickets";
+		}else{
+			return "error";
+		}
+	}
+
+	@RequestMapping (value = "pagina-search-upd-ticket", method = RequestMethod.POST)
+	public String searchUPDtickets(Model model, @RequestParam Integer ticket_id) {
+		Ticket tk = restTemplate.getForObject("http://localhost:11402/tickets/{name}", Ticket.class, ticket_id);
+		model.addAttribute("ticket", tk);
 		return "viewUpdateticket";
 
 	}
 
-	@RequestMapping (value = "pagina-update-ticket", method = RequestMethod.POST)
-	public String deleteTicket(Model model, @ModelAttribute Ticket us){
-		restTemplate.put("http://localhost:11402/tickets", us, Ticket.class);
+	@RequestMapping (value = "pagina-update-ticket", method={RequestMethod.POST, RequestMethod.PUT})
+	public String updateTicket(Model model, @ModelAttribute Ticket tk){
+		restTemplate.put("http://localhost:11402/tickets/{id}", tk, Ticket.class);
 		return "index_tickets";
-	}*/
+	}
 }
