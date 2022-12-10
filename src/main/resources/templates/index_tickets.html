@@ -12,22 +12,19 @@
 	<div class="search"><H2>Search ticket by id</H2>
 		<form th:action="@{/pagina-search-ticket}" method="post">
 			<label>Ticket id:</label>
-			<input type="text" th:value="${id}" name="id">
+			<input type="text" th:value="${ticket_id}" name="id">
 			<input type="submit" value="Search" />
 		</form>
 	</div>
 	<div>
-		<a href="/u">View all tickets</a>
-	</div>
-	<div>
-		<a href="pagina-crear-ticket">Create a ticket</a>
-	</div>
-	<div>
-		<a href="pagina-borrar-ticket">Delete a ticket</a>
-	</div>
-	<div>
-		<a href="pagina-actualizar-ticket">Update a ticket</a>
-	</div>
 
+	<a class="links" href="pagina-todos-tickets">View all tickets</a>
+	
+	<a class="links" href="pagina-crear-ticket">Create a ticket</a>
+	
+	<a class="links" href="pagina-borrar-ticket">Delete a ticket</a>
+	
+	<a class="links" href="pagina-actualizar-ticket">Update a ticket</a>
+	</div>
 </body>
 </html>	

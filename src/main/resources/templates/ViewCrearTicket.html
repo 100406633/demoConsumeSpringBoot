@@ -10,17 +10,15 @@
 <div class="create_tick"><H2>Create ticket</H2>
 	<form th:action="@{/pagina-post-ticket}" th:object="${ticket}" method="post">
 		<label >ticket code:</label>
-		<input type="text" th:field="*{ticketCode}">
-		<label >ticket category:</label>
-		<input type="text" th:field="*{category}">
+		<input type="text" th:field="*{code}">
 		<label >ticket price:</label>
 		<input type="text" th:field="*{price}">
-		<label id="ct">owner userID:</label>
-		<input type="text" th:field="*{userID}">
-		<label >owner name:</label>
-		<input type="text" th:field="*{username}">
+		<label id="ct">owner user email:</label>
+		<input type="text" th:field="*{userEmail}">
 		<label >event id:</label>
-		<input type="text" th:field="*{eventID}">
+		<input type="text" th:field="*{eventid}">
+		<label >ticket category:</label>
+		<input type="text" th:field="*{category}">
 
 		<input type="submit" value="Create" />
 	</form>
