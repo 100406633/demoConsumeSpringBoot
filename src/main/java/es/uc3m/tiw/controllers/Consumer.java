@@ -36,7 +36,7 @@ public class Consumer {
 		return "ViewDeleteUsuario.html";
 	}
 
-	@RequestMapping (value = "pagina-update-usuario", method = RequestMethod.GET)
+	@RequestMapping (value = "pagina-actualizar-usuario", method = RequestMethod.GET)
 	public String mostrarElFormularioUpdateUsuario(Model modelo){
 		modelo.addAttribute("usuario", new User());
 		return "ViewUpdateUsuario.html";
@@ -60,7 +60,6 @@ public class Consumer {
 
 	}
 
-
 	@RequestMapping (value = "pagina-todos-usuarios", method = RequestMethod.GET)
 	public String returnTodosUsuarios(Model model) {
 		User[] listaUs = restTemplate.getForObject("http://localhost:8081/users", User[].class);
@@ -75,34 +74,47 @@ public class Consumer {
 		model.addAttribute("usuario", us);
 		return "index";
 	}
+	@RequestMapping (value = "pagina-search-usuario", method = RequestMethod.POST)
+	public String searchUsuarios(Model model,@RequestParam Integer id) {
+		User us = restTemplate.getForObject("http://localhost:8081/users/{id}", User.class, id);
+		model.addAttribute("usuario", us);
+		return "viewUser";
+	}
+	@RequestMapping (value = "pagina-search-upd-usuario", method = RequestMethod.POST)
+	public String searchUpdUsuarios(Model model,@RequestParam Integer id) {
+		User us = restTemplate.getForObject("http://localhost:8081/users/{id}", User.class, id);
+		model.addAttribute("usuario", us);
+		return "viewUpdateUsuario";
 
+	}
 	@RequestMapping (value = "pagina-delete-usuario", method={RequestMethod.POST, RequestMethod.DELETE})
 	public String deleteUser(@RequestParam Integer id){
-		System.out.println("user:"+id);
 		User delUser = restTemplate.getForObject("http://localhost:8081/users/{id}", User.class, id);
-		System.out.println("user:"+id);
 		if (delUser != null) {
-			System.out.println("ENTRA "+delUser.getIduser());
 			restTemplate.delete("http://localhost:8081/users/{id}", id);
 			return "index";
 		}else{
 			return "error";
 		}
-
 	}
-	@RequestMapping (value = "pagina-search-usuario", method = RequestMethod.POST)
-	public String searchUsuarios(Model model, @RequestParam String name) {
-		User us = restTemplate.getForObject("http://localhost:8081/users/{name}", User.class, name);
-		model.addAttribute("usuario", us);
-		return "viewUpdateUsuario";
-
-	}
-
-	@RequestMapping (value = "pagina-update-usuario", method = RequestMethod.POST)
+	@RequestMapping (value = "pagina-update-usuario", method={RequestMethod.POST, RequestMethod.PUT})
 	public String updateUser(Model model, @ModelAttribute User us){
-		restTemplate.put("http://localhost:8081/users", us, User.class);
+		System.out.println("id" + us.getIduser() + "name" + us.getName());
+		restTemplate.put("http://localhost:8081/users/{id}", us, us.getIduser());
 		return "index";
 	}
+/*
+	@RequestMapping (value = "pagina-update-usuario", method={RequestMethod.POST, RequestMethod.PUT})
+	public String updateUser( Model model, @RequestParam Integer id){
+		User updUser = restTemplate.getForObject("http://localhost:8081/users/{id}", User.class, id);
+		if (updUser != null) {
+			restTemplate.put("http://localhost:8081/users/{id}", id, updUser);
+			return "index";
+		}else{
+			return "error";
+		}
+
+	}*/
 
 	/*
 	//**********************************EVENTS*******************************************

@@ -3,22 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <title>Page to update new user</title>
+    <link rel="stylesheet" th:href="@{/css/header_footer.css}">
+    <link rel="stylesheet" th:href="@{/css/logged_admin.css}">
 </head>
 <body>
+<!--
 <form th:action="@{/pagina-search-usuario}" method="post">
 <label>Search User name:</label>
 <input type="text" th:value="${name}" name="name">
 <input type="submit" value="Search" />
 </form>
+-->
+<div class="search"><H2>Search the user to update: </H2>
+    <form th:action="@{/pagina-search-upd-usuario}" method="post">
+        <label>User id:</label>
+        <input type="text" th:value="${id}" name="id">
+        <input type="submit" value="Search" />
+    </form>
+</div>
 
 <form th:action="@{/pagina-update-usuario}" th:object="${usuario}" method="post">
-<label >User name:</label>
-<input type="hidden" th:field="*{iduser}" value="Prueba">
-<label >User name:</label>
-<input type="text" th:field="*{name}" value="Prueba">
-<label >User surname:</label>
-<input type="text" th:field="*{surname}" value="Prueba">
-<input type="submit" value="Update" />
+    <label >User id of the user to update:</label>
+    <input type="text" th:field="*{iduser}" value="Prueba">
+    <label >New user name:</label>
+    <input type="text" th:field="*{name}" value="Prueba">
+    <label >New surname:</label>
+    <input type="text" th:field="*{surname}" value="Prueba">
+    <label >New address:</label>
+    <input type="text" th:field="*{address}">
+    <label id="ups">Alias:</label>
+    <input type="text" th:field="*{alias}">
+    <label >Phone:</label>
+    <input type="text" th:field="*{phone}">
+    <label >New email:</label>
+    <input type="text" th:field="*{email}">
+    <label >New password:</label>
+    <input type="text" th:field="*{password}">
+
+    <input type="submit" value="Update" />
 </form>
 
 </body>
