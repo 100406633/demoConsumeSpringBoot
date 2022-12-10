@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Administer events in ticketsell</title>
+	<link rel="stylesheet" th:href="@{/css/header_footer.css}">
+	<link rel="stylesheet" th:href="@{/css/logged_admin.css}">
+	<link rel="stylesheet" th:href="@{/css/view1.css}">
+</head>
+<body>
+<h1 id="page_title">ADMINISTER USERS IN TICKETSELL</h1><br>
+	<div class="search"><H2>Search user by id</H2>
+		<form th:action="@{/pagina-search-usuario}" method="post">
+			<label>User id:</label>
+			<input type="text" th:value="${id}" name="id">
+			<input type="submit" value="Search" />
+		</form>
+	</div>
+	<div>
+		<a href="/u">View all users</a>
+	</div>
+	<div>
+		<a href="pagina-crear-usuario">Create a user</a>
+	</div>
+	<div>
+		<a href="pagina-borrar-usuario">Delete a user</a>
+	</div>
+	<div>
+		<a href="pagina-actualizar-usuario">Update a user</a>
+	</div>
+
+</body>
+</html>	

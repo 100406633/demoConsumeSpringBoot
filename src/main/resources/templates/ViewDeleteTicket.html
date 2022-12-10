@@ -7,13 +7,14 @@
 	<link rel="stylesheet" th:href="@{/css/logged_admin.css}">
 </head>
 <body>
-<div class="delete">
-<h2>Delete user</h2>
-<form th:action="@{/pagina-delete-usuario}" method="post">
-	<label>User id: </label>
-	<input type="text" th:value="${id}" name="id">
-	<input type="submit" value="Delete">
-</form></div>
+
+<div class="delete"><H2>Delete ticket</H2>
+	<form th:action="@{/pagina-delete-usuario}" method="post">
+		<label>ticket id: </label>
+		<input type="text" th:value="${ticketID}" name="ticketID">
+		<input type="submit" value="Delete">
+	</form>
+</div>
 </body>
 </html>
 

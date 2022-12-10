@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update user</title>
+    <link rel="stylesheet" th:href="@{/css/header_footer.css}">
+    <link rel="stylesheet" th:href="@{/css/logged_admin.css}">
+    <link rel="stylesheet" th:href="@{/css/view1.css}">
+</head>
+<body>
+
+<div class="search"><H2>Search the ticket to update</H2>
+    <form th:action="@{/pagina-search-upd-usuario}" method="post">
+        <label>ticket id:</label>
+        <input type="text" th:value="${ticketID}" name="ticketID">
+        <input type="submit" value="Search" />
+    </form>
+</div>
+
+<div class="update_tick"><H2>Update ticket</H2>
+    <form th:action="@{/pagina-update-usuario}" th:object="${usuario}" method="post">
+        <label >ticket id of the ticket to update:: </label>
+        <input type="text" th:field="*{ticketID}">
+        <label >ticket code:</label>
+        <input type="text" th:field="*{ticketCode}">
+        <label >ticket category:</label>
+        <input type="text" th:field="*{category}">
+        <label >ticket price:</label>
+        <input type="text" th:field="*{price}">
+        <label id="ut">owner userID:</label>
+        <input type="text" th:field="*{userID}">
+        <label >owner name:</label>
+        <input type="text" th:field="*{username}">
+        <label >event id:</label>
+        <input type="text" th:field="*{eventID}">
+
+        <input type="submit" value="Update" />
+    </form>
+</div>
+</body>
+</html>

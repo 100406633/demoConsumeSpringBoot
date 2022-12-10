@@ -7,26 +7,18 @@
 	<link rel="stylesheet" th:href="@{/css/logged_admin.css}">
 </head>
 <body>
-<h1 id="page_title">ADMINISTER USERS IN TICKETSELL</h1><br>
-	<div class="search"><H2>Search user by id</H2>
-		<form th:action="@{/pagina-search-usuario}" method="post">
-			<label>User id:</label>
-			<input type="text" th:value="${id}" name="id">
-			<input type="submit" value="Search" />
-		</form>
+<h1 id="page_title">ADMINISTER TICKETSELL</h1><br>
+
+	<div>
+		<a class="links" href="/u">Manage users</a>
 	</div>
 	<div>
-		<a href="pagina-todos-usuarios">View all users</a>
+		<a class="links" href="/e">Manage Events</a>
 	</div>
 	<div>
-		<a href="pagina-crear-usuario">Create a user</a>
+		<a class="links" href="/t">Manage Tickets</a>
 	</div>
-	<div>
-		<a href="pagina-borrar-usuario">Delete a user</a>
-	</div>
-	<div>
-		<a href="pagina-actualizar-usuario">Update a user</a>
-	</div>
+
 
 </body>
 </html>	

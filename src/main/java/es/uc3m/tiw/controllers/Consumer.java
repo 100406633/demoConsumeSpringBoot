@@ -1,17 +1,14 @@
 
 package es.uc3m.tiw.controllers;
 
-import java.util.List;
-
+import es.uc3m.tiw.domains.User;
+import es.uc3m.tiw.domains.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import es.uc3m.tiw.domains.User;
-//import es.uc3m.tiw.domains.Events;
-//import es.uc3m.tiw.domains.Tickets;
 
 @Controller
 public class Consumer {
@@ -23,6 +20,11 @@ public class Consumer {
 	@RequestMapping("/")	
 	public String index(){
 		return "index";
+	}
+
+	@RequestMapping("/u")
+	public String index_u(){
+		return "index_users";
 	}
 
 	@RequestMapping (value = "pagina-crear-usuario", method = RequestMethod.GET)
@@ -46,7 +48,7 @@ public class Consumer {
 	@RequestMapping (value = "pagina-usuario/{name}", method = RequestMethod.GET)
 	public String returnUsuarios(Model model, @PathVariable String name) {
 
-		User us = restTemplate.getForObject("http://localhost:8081/users/{name}", User.class, name);
+		User us = restTemplate.getForObject("http://localhost:11400/users/{name}", User.class, name);
 		model.addAttribute("usuario", us);
 		return "viewUser";
 
@@ -54,7 +56,7 @@ public class Consumer {
 
 	@RequestMapping (value = "pagina-usuario", method = RequestMethod.POST)
 	public String returnUsuariosByNameInForm(Model model, @RequestParam String name) {
-		User us = restTemplate.getForObject("http://localhost:8081/users/{name}", User.class, name);
+		User us = restTemplate.getForObject("http://localhost:11400/users/{name}", User.class, name);
 		model.addAttribute("usuario", us);
 		return "viewUser";
 
@@ -62,7 +64,7 @@ public class Consumer {
 
 	@RequestMapping (value = "pagina-todos-usuarios", method = RequestMethod.GET)
 	public String returnTodosUsuarios(Model model) {
-		User[] listaUs = restTemplate.getForObject("http://localhost:8081/users", User[].class);
+		User[] listaUs = restTemplate.getForObject("http://localhost:11400/users", User[].class);
 		model.addAttribute("userList", listaUs);
 		return "viewAllUsers";
 	}
@@ -70,29 +72,29 @@ public class Consumer {
 
 	@RequestMapping (value = "pagina-post-usuario", method = RequestMethod.POST)
 	public String saveUser(Model model, @ModelAttribute User us) {
-		User newUser = restTemplate.postForObject("http://localhost:8081/users", us, User.class);
+		User newUser = restTemplate.postForObject("http://localhost:11400/users", us, User.class);
 		model.addAttribute("usuario", us);
-		return "index";
+		return "index_users";
 	}
 	@RequestMapping (value = "pagina-search-usuario", method = RequestMethod.POST)
 	public String searchUsuarios(Model model,@RequestParam Integer id) {
-		User us = restTemplate.getForObject("http://localhost:8081/users/{id}", User.class, id);
+		User us = restTemplate.getForObject("http://localhost:11400/users/{id}", User.class, id);
 		model.addAttribute("usuario", us);
 		return "viewUser";
 	}
 	@RequestMapping (value = "pagina-search-upd-usuario", method = RequestMethod.POST)
 	public String searchUpdUsuarios(Model model,@RequestParam Integer id) {
-		User us = restTemplate.getForObject("http://localhost:8081/users/{id}", User.class, id);
+		User us = restTemplate.getForObject("http://localhost:11400/users/{id}", User.class, id);
 		model.addAttribute("usuario", us);
 		return "viewUpdateUsuario";
 
 	}
 	@RequestMapping (value = "pagina-delete-usuario", method={RequestMethod.POST, RequestMethod.DELETE})
 	public String deleteUser(@RequestParam Integer id){
-		User delUser = restTemplate.getForObject("http://localhost:8081/users/{id}", User.class, id);
+		User delUser = restTemplate.getForObject("http://localhost:11400/users/{id}", User.class, id);
 		if (delUser != null) {
-			restTemplate.delete("http://localhost:8081/users/{id}", id);
-			return "index";
+			restTemplate.delete("http://localhost:11400/users/{id}", id);
+			return "index_users";
 		}else{
 			return "error";
 		}
@@ -100,24 +102,19 @@ public class Consumer {
 	@RequestMapping (value = "pagina-update-usuario", method={RequestMethod.POST, RequestMethod.PUT})
 	public String updateUser(Model model, @ModelAttribute User us){
 		System.out.println("id" + us.getIduser() + "name" + us.getName());
-		restTemplate.put("http://localhost:8081/users/{id}", us, us.getIduser());
-		return "index";
+		restTemplate.put("http://localhost:11400/users/{id}", us, us.getIduser());
+		return "index_users";
 	}
-/*
-	@RequestMapping (value = "pagina-update-usuario", method={RequestMethod.POST, RequestMethod.PUT})
-	public String updateUser( Model model, @RequestParam Integer id){
-		User updUser = restTemplate.getForObject("http://localhost:8081/users/{id}", User.class, id);
-		if (updUser != null) {
-			restTemplate.put("http://localhost:8081/users/{id}", id, updUser);
-			return "index";
-		}else{
-			return "error";
-		}
 
-	}*/
+
+
+	//**********************************EVENTS*******************************************
+	@RequestMapping("/e")
+	public String index_e(){
+		return "index_events";
+	}
 
 	/*
-	//**********************************EVENTS*******************************************
 	@RequestMapping (value = "pagina-crear-evento", method = RequestMethod.GET)
 	public String mostrarElFormularioDelevento(Model modelo){
 		modelo.addAttribute("evento", new Event());
@@ -175,7 +172,7 @@ public class Consumer {
 		if (delEvent != null) {
 			restTemplate.delete("http://localhost:8081/events/{id}", delEvent.getIdevent());
 		}
-		return "index";
+		return "index_events";
 	}
 
 	@RequestMapping (value = "pagina-search-evento", method = RequestMethod.POST)
@@ -189,40 +186,47 @@ public class Consumer {
 	@RequestMapping (value = "pagina-update-evento", method = RequestMethod.POST)
 	public String deleteEvent(Model model, @ModelAttribute Event us){
 		restTemplate.put("http://localhost:8081/events", us, Event.class);
-		return "index";
+		return "index_events";
+	}
+*/
+	//****************************************TICKET***************************************
+
+	@RequestMapping("/t")
+	public String index_t(){
+		return "index_tickets";
 	}
 
-	//****************************************TICKET***************************************
 	@RequestMapping (value = "pagina-crear-ticket", method = RequestMethod.GET)
 	public String mostrarElFormularioDelticket(Model modelo){
 		modelo.addAttribute("ticket", new Ticket());
 		return "ViewCrearticket.html";
 	}
 
+
 	@RequestMapping (value = "pagina-borrar-ticket", method = RequestMethod.GET)
 	public String mostrarElFormularioBorrarticket(){
 		return "ViewDeleteticket.html";
 	}
 
-	@RequestMapping (value = "pagina-update-ticket", method = RequestMethod.GET)
+	@RequestMapping (value = "pagina-actualizar-ticket", method = RequestMethod.GET)
 	public String mostrarElFormularioUpdateticket(Model modelo){
 		modelo.addAttribute("ticket", new Ticket());
 		return "ViewUpdateticket.html";
 	}
 
 	// LLAMADAS AL CONTROLADOR
-	@RequestMapping (value = "pagina-ticket/{name}", method = RequestMethod.GET)
-	public String returntickets(Model model, @PathVariable String name) {
+	@RequestMapping (value = "pagina-ticket/{code}", method = RequestMethod.GET)
+	public String returntickets(Model model, @PathVariable String code) {
 
-		Ticket us = restTemplate.getForObject("http://localhost:8081/tickets/{name}", Ticket.class, name);
-		model.addAttribute("ticket", us);
-		return "viewAllTickets";
+		Ticket tick = restTemplate.getForObject("http://localhost:11402/tickets/{code}", Ticket.class, code);
+		model.addAttribute("ticket", tick);
+		return "viewTicket";
 
 	}
-
+/*
 	@RequestMapping (value = "pagina-ticket", method = RequestMethod.POST)
 	public String returnticketsByNameInForm(Model model, @RequestParam String name) {
-		Ticket us = restTemplate.getForObject("http://localhost:8081/tickets/{name}", Ticket.class, name);
+		Ticket us = restTemplate.getForObject("http://localhost:11402/tickets/{name}", Ticket.class, name);
 		model.addAttribute("ticket", us);
 		return "viewAllTickets";
 
@@ -231,7 +235,7 @@ public class Consumer {
 
 	@RequestMapping (value = "pagina-todos-tickets", method = RequestMethod.GET)
 	public String returnTodostickets(Model model) {
-		Ticket[] listaUs = restTemplate.getForObject("http://localhost:8081/tickets", Ticket[].class);
+		Ticket[] listaUs = restTemplate.getForObject("http://localhost:11402/tickets", Ticket[].class);
 		model.addAttribute("ticketList", listaUs);
 		return "viewAllTickets";
 	}
@@ -239,23 +243,23 @@ public class Consumer {
 
 	@RequestMapping (value = "pagina-post-ticket", method = RequestMethod.POST)
 	public String saveTicket(Model model, @ModelAttribute Ticket us) {
-		Ticket newTicket = restTemplate.postForObject("http://localhost:8081/tickets", us, Ticket.class);
+		Ticket newTicket = restTemplate.postForObject("http://localhost:11402/tickets", us, Ticket.class);
 		model.addAttribute("ticket", us);
 		return "viewAllTickets";
 	}
 
 	@RequestMapping (value = "pagina-delete-ticket", method = RequestMethod.POST)
 	public String deleteTicket(Model model, @RequestParam String ticketName){
-		Ticket delTicket = restTemplate.getForObject("http://localhost:8081/tickets/{name}", Ticket.class, ticketName);
+		Ticket delTicket = restTemplate.getForObject("http://localhost:11402/tickets/{name}", Ticket.class, ticketName);
 		if (delTicket != null) {
-			restTemplate.delete("http://localhost:8081/tickets/{id}", delTicket.getIdticket());
+			restTemplate.delete("http://localhost:11402/tickets/{id}", delTicket.getIdticket());
 		}
-		return "index";
+		return "index_tickets";
 	}
 
 	@RequestMapping (value = "pagina-search-ticket", method = RequestMethod.POST)
 	public String searchtickets(Model model, @RequestParam String name) {
-		Ticket us = restTemplate.getForObject("http://localhost:8081/tickets/{name}", Ticket.class, name);
+		Ticket us = restTemplate.getForObject("http://localhost:11402/tickets/{name}", Ticket.class, name);
 		model.addAttribute("ticket", us);
 		return "viewUpdateticket";
 
@@ -263,7 +267,7 @@ public class Consumer {
 
 	@RequestMapping (value = "pagina-update-ticket", method = RequestMethod.POST)
 	public String deleteTicket(Model model, @ModelAttribute Ticket us){
-		restTemplate.put("http://localhost:8081/tickets", us, Ticket.class);
-		return "index";
+		restTemplate.put("http://localhost:11402/tickets", us, Ticket.class);
+		return "index_tickets";
 	}*/
 }

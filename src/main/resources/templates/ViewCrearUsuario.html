@@ -2,11 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>Page to create a new user</title>
+	<title>Create a new user</title>
 	<link rel="stylesheet" th:href="@{/css/header_footer.css}">
 	<link rel="stylesheet" th:href="@{/css/logged_admin.css}">
 </head>
-<div id="create" class="create_us"><H2>Create user</H2>
+<div id="create" class="create_us">
+	<H2>Create user</H2>
 	<form th:action="@{/pagina-post-usuario}" th:object="${usuario}" method="post">
 		<label >User name:</label>
 		<input type="text" th:field="*{name}">

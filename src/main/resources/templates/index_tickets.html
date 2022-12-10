@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Administer tickets in ticketsell</title>
+	<link rel="stylesheet" th:href="@{/css/header_footer.css}">
+	<link rel="stylesheet" th:href="@{/css/logged_admin.css}">
+	<link rel="stylesheet" th:href="@{/css/view1.css}">
+</head>
+<body>
+<h1 id="page_title">ADMINISTER TICKETS IN TICKETSELL</h1><br>
+	<div class="search"><H2>Search ticket by id</H2>
+		<form th:action="@{/pagina-search-ticket}" method="post">
+			<label>Ticket id:</label>
+			<input type="text" th:value="${id}" name="id">
+			<input type="submit" value="Search" />
+		</form>
+	</div>
+	<div>
+		<a href="/u">View all tickets</a>
+	</div>
+	<div>
+		<a href="pagina-crear-ticket">Create a ticket</a>
+	</div>
+	<div>
+		<a href="pagina-borrar-ticket">Delete a ticket</a>
+	</div>
+	<div>
+		<a href="pagina-actualizar-ticket">Update a ticket</a>
+	</div>
+
+</body>
+</html>	

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Create a new user</title>
+	<link rel="stylesheet" th:href="@{/css/header_footer.css}">
+	<link rel="stylesheet" th:href="@{/css/logged_admin.css}">
+</head>
+
+<div class="create_tick"><H2>Create ticket</H2>
+	<form th:action="@{/pagina-post-usuario}" th:object="${usuario}" method="post">
+		<label >ticket code:</label>
+		<input type="text" th:field="*{ticketCode}">
+		<label >ticket category:</label>
+		<input type="text" th:field="*{category}">
+		<label >ticket price:</label>
+		<input type="text" th:field="*{price}">
+		<label id="ct">owner userID:</label>
+		<input type="text" th:field="*{userID}">
+		<label >owner name:</label>
+		<input type="text" th:field="*{username}">
+		<label >event id:</label>
+		<input type="text" th:field="*{eventID}">
+
+		<input type="submit" value="Create" />
+	</form>
+</div>
+</body>
+</html>

@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Page to update new user</title>
+    <meta charset="UTF-8">
+    <title>Update user</title>
     <link rel="stylesheet" th:href="@{/css/header_footer.css}">
     <link rel="stylesheet" th:href="@{/css/logged_admin.css}">
+    <link rel="stylesheet" th:href="@{/css/view1.css}">
 </head>
 <body>
-<!--
-<form th:action="@{/pagina-search-usuario}" method="post">
-<label>Search User name:</label>
-<input type="text" th:value="${name}" name="name">
-<input type="submit" value="Search" />
-</form>
--->
+
 <div class="search"><H2>Search the user to update: </H2>
     <form th:action="@{/pagina-search-upd-usuario}" method="post">
         <label>User id:</label>
@@ -21,27 +16,27 @@
         <input type="submit" value="Search" />
     </form>
 </div>
+<div class="update_us"><H2>Update user</H2>
+    <form th:action="@{/pagina-update-usuario}" th:object="${usuario}" method="post">
+        <label id="id">User id of the user to update:</label>
+        <input type="text" th:field="*{iduser}" value="Prueba"><br>
+        <label id="up_us">User name:</label>
+        <input type="text" th:field="*{name}" value="Prueba">
+        <label >Surname:</label>
+        <input type="text" th:field="*{surname}" value="Prueba">
+        <label >Address:</label>
+        <input type="text" th:field="*{address}">
+        <label >Alias:</label>
+        <input type="text" th:field="*{alias}">
+        <label id="upus">Phone:</label>
+        <input type="text" th:field="*{phone}">
+        <label >New email:</label>
+        <input type="text" th:field="*{email}">
+        <label >New password:</label>
+        <input type="text" th:field="*{password}">
 
-<form th:action="@{/pagina-update-usuario}" th:object="${usuario}" method="post">
-    <label >User id of the user to update:</label>
-    <input type="text" th:field="*{iduser}" value="Prueba">
-    <label >New user name:</label>
-    <input type="text" th:field="*{name}" value="Prueba">
-    <label >New surname:</label>
-    <input type="text" th:field="*{surname}" value="Prueba">
-    <label >New address:</label>
-    <input type="text" th:field="*{address}">
-    <label id="ups">Alias:</label>
-    <input type="text" th:field="*{alias}">
-    <label >Phone:</label>
-    <input type="text" th:field="*{phone}">
-    <label >New email:</label>
-    <input type="text" th:field="*{email}">
-    <label >New password:</label>
-    <input type="text" th:field="*{password}">
-
-    <input type="submit" value="Update" />
-</form>
+        <input type="submit" value="Update" />
+    </form>
 
 </body>
 </html>
