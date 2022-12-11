@@ -9,25 +9,22 @@
 </head>
 <body>
 <h1 id="page_title">ADMINISTER USERS IN TICKETSELL</h1><br>
-	<div class="search"><H2>Search user by id</H2>
-		<form th:action="@{/pagina-search-usuario}" method="post">
-			<label>User id:</label>
-			<input type="text" th:value="${id}" name="id">
-			<input type="submit" value="Search" />
-		</form>
-	</div>
-	<div>
-		<a href="/u">View all users</a>
-	</div>
-	<div>
-		<a href="pagina-crear-usuario">Create a user</a>
-	</div>
-	<div>
-		<a href="pagina-borrar-usuario">Delete a user</a>
-	</div>
-	<div>
-		<a href="pagina-actualizar-usuario">Update a user</a>
-	</div>
 
+<div class="search"><H2>Search event by id</H2>
+	<form th:action="@{/pagina-search-evento}" method="post">
+		<label>event id:</label>
+		<input type="text" th:value="${eventid}" name="eventid">
+		<input type="submit" value="Search" />
+	</form>
+</div>
+<div>
+	<a class="links" href="pagina-todos-eventos">View all events</a>
+
+	<a class="links" href="pagina-crear-evento">Create an event</a>
+
+	<a class="links" href="pagina-borrar-evento">Delete an event</a>
+
+	<a class="links" href="pagina-actualizar-evento">Update an event</a>
+</div>
 </body>
 </html>	

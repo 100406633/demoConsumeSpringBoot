@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.Set;
 
 public class Event {
-	Integer id;
+	Integer eventid;
 	String name;
 	String venue;
 	String city;
@@ -13,15 +13,15 @@ public class Event {
 	LocalDate date;
 	String category;
 	byte[] image;
-	Set<Ticket> ticketId;
+	Set<Ticket> tickets;
 
 
-	public Integer getId() {
-		return id;
+	public Integer getEventid() {
+		return eventid;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setEventid(Integer eventid) {
+		this.eventid = eventid;
 	}
 
 	public String getName() {
@@ -80,8 +80,8 @@ public class Event {
 		this.image = image;
 	}
 
-	public Set<Ticket> getTicketId() {
-		return this.ticketId;
+	public Set<Ticket> getTickets() {
+		return this.tickets;
 	}
 }
 

@@ -9,20 +9,23 @@
 <body>
 
   <h1 id="page_title">Information about the event:</h1>
-  <div class="tables">     
-      <div class="grid-item">Event id:<span th:text="${event.id}">Default id</span></div>
-      <div class="grid-item">Event name:<span th:text="${event.eventName}">Default eventName</span></div>
-      <div class="grid-item">Event venue:<span th:text="${event.venue}">Default venue</span></div>
-      <div class="grid-item">Event city:<span th:text="${event.city}">Default city</span><br></div>
-      <div class="grid-item">Event country:<span th:text="${event.country}">Default country</span></div>
-      <div class="grid-item">Event date:<span th:text="${event.date}">Default date</span></div>
-      <div class="grid-item">Event category:<span th:text="${event.category}">Default category</span></div>
-      <div class="grid-item">Event image:<span th:text="${event.image}">Default image</span></div>
+  <div class="tables">
+      Event name:<span th:text="${event.name}">Default eventName</span>
+      Event venue:<span th:text="${event.venue}">Default venue</span>
+      Event city:<span th:text="${event.city}">Default city</span><br>
+      Event country:<span th:text="${event.country}">Default country</span>
+      Event date:<span th:text="${event.date}">Default date</span>
+      Event image:<span th:text="${event.image}">Default image</span>
+      Event category:<span th:text="${event.category}">Default category</span>
+
   </div>
+
+
+<<!--
   <div class="table_tick"> 
     <h1 id="page_title">Tickets in sale</h1>
     <table>
-      <tr th:each="tickets : ${usuario.tickets}">
+      <tr th:each="tickets : ${event.tickets}">
         <td>Ticket id:<span th:text="${ticket.id}">Default id</span></td>
         <td>Ticket code:<span th:text="${ticket.ticketCode}">Default ticketCode</span></td>
         <td>Ticket category:<span th:text="${ticket.country}">Default country</span></td>
@@ -32,17 +35,8 @@
         <td>Ticket event:<span th:text="${ticket.event}">Default event</span></td>
       </tr>
     </table>
-  </div>
-  <!-- footer -->
-  <div id="foo"></div>
-  <footer>
-      <div class="logo_container">
-        <img src="images/logo.png" alt="TicketSell logo">
-      </div>
-      <div class="ticketsell_title">
-            <a href="index.jsp">ticketsell</a>
-        </div>
-    </footer>
+  </div>-->
+</body>
 </html>
 
 

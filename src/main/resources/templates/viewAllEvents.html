@@ -12,16 +12,24 @@
   <h1 id="page_title">All events:</h1>
   <div class="all_tables">
   <table>
-    <tr th:each="usuario : ${eventList}">
-      <td>Event id:<span th:text="${event.id}">Default id</span></td>
-	    <td>Event name:<span th:text="${event.eventName}">Default eventName</span></td>
-	    <td>Event venue:<span th:text="${event.venue}">Default venue</span></td>
-	    <td>Event city:<span th:text="${event.city}">Default city</span><br></td>
-	    <td>Event country:<span th:text="${event.country}">Default country</span></td>
-	    <td>Event date:<span th:text="${event.date}">Default date</span></td>
-	    <td>Event category:<span th:text="${event.category}">Default category</span></td>
-	    <td>Event image:<span th:text="${event.image}">Default image</span></td>
-	    
+      <tr>
+
+          <th>Event name</th>
+          <th>Venue</th>
+          <th>City</th>
+          <th>Country</th>
+          <th>Date</th>
+          <th>Image</th>
+          <th>Category</th>
+      </tr>
+    <tr th:each="event : ${eventList}">
+	    <td th:text="${event.name}">Default eventName</td>
+	    <td th:text="${event.venue}">Default venue</td>
+	    <td th:text="${event.city}">Default city</td>
+	    <td th:text="${event.country}">Default country</td>
+	    <td th:text="${event.date}">Default date</td>
+	    <td th:text="${event.image}">Default image</td>
+        <td th:text="${event.category}">Default category</td>
     </tr>
     </table>
   

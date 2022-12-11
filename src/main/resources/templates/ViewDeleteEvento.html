@@ -7,14 +7,14 @@
 	<link rel="stylesheet" th:href="@{/css/logged_admin.css}">
 </head>
 <body>
-
-<div class="delete"><H2>Delete ticket</H2>
-	<form th:action="@{/pagina-delete-ticket}" method="post">
-		<label>ticket id: </label>
-		<input type="text" th:value="${ticket_id}" name="ticket_id">
-		<input type="submit" value="Delete">
+<div class="delete"><H2>Delete event</H2>
+	<form th:action="@{/pagina-delete-evento}" method="post">
+		<label>event id: </label>
+		<input type="text" th:value="${eventid}" name="eventid">
+		<input type="submit" value="Submit">
 	</form>
 </div>
+
 </body>
 </html>
 

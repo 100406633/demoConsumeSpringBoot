@@ -5,15 +5,11 @@ public class Ticket {
 	Integer id;
 	String code;
 	Double price;
-	
+	//String userid;
+	//Integer eventid;
 	User user;
-
-	String userEmail;
 	Event event;
-
-	Integer eventid;
-
-	String category;
+	//String category;
 public Integer getId() {
 		return id;
 	}
@@ -40,21 +36,24 @@ public Integer getId() {
 	public User getUser() {
 		return user;
 	}
-	public String getUserEmail() {
+	/*public String getuserid() {
 		return user.getEmail();
 	}
+	public String getuserid() {
+		return userid;
+	}*/
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
-	}
+	/*public void setuserid(String userid) {
+		this.userid = userid;
+	}*/
 	public Event getEvent() { return event; }
-	public Integer getEventid() { return event.getId(); }
+	/*public Integer getEventid() { return eventid; }*/
 	public void setEvent(Event event) {
 		this.event = event;
 	}
-	public void setEventid(Integer eventid) {
+	/*public void setEventid(Integer eventid) {
 		this.eventid = eventid;
 	}
 
@@ -62,6 +61,6 @@ public Integer getId() {
 		this.category = category;
 	}
 	public String getCategory() {
-		return event.getCategory();
-	}
+		return category;
+	}*/
 }

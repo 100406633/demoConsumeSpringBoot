@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update user</title>
+    <link rel="stylesheet" th:href="@{/css/header_footer.css}">
+    <link rel="stylesheet" th:href="@{/css/logged_admin.css}">
+    <link rel="stylesheet" th:href="@{/css/view1.css}">
+</head>
+<body>
+
+
+<div class="search"><H2>Search event to update: </H2>
+    <form th:action="@{/pagina-search-upd-evento}" method="post">
+        <label>event id:</label>
+        <input type="text" th:value="${eventid}" name="eventid">
+        <input type="submit" value="Search" />
+    </form>
+</div>
+
+
+<div id="update" class="update_ev"><H2>Update event</H2>
+    <form th:action="@{/pagina-update-evento}" th:object="${evento}" method="post">
+        <label >event id:</label>
+        <input type="text" th:field="*{eventid}" value="">
+        <label >event name:</label>
+        <input type="text" th:field="*{name}">
+        <label >event venue:</label>
+        <input type="text" th:field="*{venue}">
+        <label >event city:</label>
+        <input type="text" th:field="*{city}">
+        <label id="ev">event country:</label>
+        <input type="text" th:field="*{country}">
+        <label >event date:</label>
+        <input type="date" th:field="*{date}">
+        <label >event image:</label>
+        <input type="image" th:field="*{image}">
+        <label >event category:</label>
+        <input type="text" th:field="*{category}">
+
+        <input type="submit" value="Update" />
+    </form>
+</div>
+
+</body>
+</html>
