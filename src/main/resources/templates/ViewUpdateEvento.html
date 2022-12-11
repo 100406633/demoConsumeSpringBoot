@@ -20,9 +20,9 @@
 
 
 <div id="update" class="update_ev"><H2>Update event</H2>
-    <form th:action="@{/pagina-update-evento}" th:object="${evento}" method="post">
-        <label >event id:</label>
-        <input type="text" th:field="*{eventid}" value="">
+    <form th:action="@{/pagina-update-evento}" th:object="${event}" method="post">
+        <label id="id">Event id of the event to update:</label>
+        <input type="text" th:field="*{eventid}" value=""><br>
         <label >event name:</label>
         <input type="text" th:field="*{name}">
         <label >event venue:</label>
@@ -34,7 +34,7 @@
         <label >event date:</label>
         <input type="date" th:field="*{date}">
         <label >event image:</label>
-        <input type="image" th:field="*{image}">
+        <input type="file" th:field="*{image}">
         <label >event category:</label>
         <input type="text" th:field="*{category}">
 

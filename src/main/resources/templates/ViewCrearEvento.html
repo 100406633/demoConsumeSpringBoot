@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="create_ev"><H2>Create event</H2>
-		<form th:action="@{/pagina-post-evento}" th:object="${evento}" method="post">
+		<form th:action="@{/pagina-post-evento}" th:object="${event}" method="post">
 			<label >event name:</label>
 			<input type="text" th:field="*{name}">
 			<label >event venue:</label>

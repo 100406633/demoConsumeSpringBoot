@@ -117,7 +117,7 @@ public class Consumer {
 
 	@RequestMapping (value = "pagina-crear-evento", method = RequestMethod.GET)
 	public String mostrarElFormularioDelevento(Model modelo){
-		modelo.addAttribute("evento", new Event());
+		modelo.addAttribute("event", new Event());
 		return "ViewCrearevento.html";
 	}
 	
@@ -128,7 +128,7 @@ public class Consumer {
 
 	@RequestMapping (value = "pagina-actualizar-evento", method = RequestMethod.GET)
 	public String mostrarElFormularioUpdateevento(Model modelo){
-		modelo.addAttribute("evento", new Event());
+		modelo.addAttribute("event", new Event());
 		return "ViewUpdateEvento.html";
 	}
 
@@ -136,14 +136,14 @@ public class Consumer {
 	@RequestMapping (value = "pagina-evento/{name}", method = RequestMethod.GET)
 	public String returneventos(Model model, @PathVariable String name) {
 		Event ev = restTemplate.getForObject("http://localhost:11403/events/{name}", Event.class, name);
-		model.addAttribute("evento", ev);
+		model.addAttribute("event", ev);
 		return "viewEvent";
 	}
 
 	@RequestMapping (value = "pagina-evento", method = RequestMethod.POST)
 	public String returneventosByNameInForm(Model model, @RequestParam String name) {
 		Event ev = restTemplate.getForObject("http://localhost:11403/events/{name}", Event.class, name);
-		model.addAttribute("evento", ev);
+		model.addAttribute("event", ev);
 		return "viewEvent";
 	}
 
@@ -159,7 +159,7 @@ public class Consumer {
 	@RequestMapping (value = "pagina-post-evento", method = RequestMethod.POST)
 	public String saveEvent(Model model, @ModelAttribute Event ev) {
 		Event newEvent = restTemplate.postForObject("http://localhost:11403/events", ev, Event.class);
-		model.addAttribute("evento", ev);
+		model.addAttribute("event", ev);
 		return "index_events";
 	}
 
@@ -180,10 +180,15 @@ public class Consumer {
 		model.addAttribute("event", ev);
 		return "viewEvent";
 	}
-
+	@RequestMapping (value = "pagina-search-upd-evento", method = RequestMethod.POST)
+	public String searchUpdEventos(Model model,@RequestParam Integer eventid) {
+		Event ev = restTemplate.getForObject("http://localhost:11403/events/{name}", Event.class, eventid);
+		model.addAttribute("event", ev);
+		return "viewUpdateEvento";
+	}
 	@RequestMapping (value = "pagina-update-evento", method={RequestMethod.POST, RequestMethod.PUT})
 	public String updateEvent(Model model, @ModelAttribute Event ev){
-		restTemplate.put("http://localhost:11403/events", ev, Event.class);
+		restTemplate.put("http://localhost:11403/events/{name}", ev, ev.getEventid());
 		return "index_events";
 	}
 
