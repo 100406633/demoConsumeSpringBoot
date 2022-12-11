@@ -9,15 +9,13 @@
 <body>
 
     <h1 id="page_title">Information about the ticket:</h1>
-    <div class="ttables">     
-      Ticket id:<span th:text="${ticket.id}">Default id</span>  <!-- it is possible that the id has to be commented -->
-      Ticket code:<span th:text="${ticket.ticketCode}">Default ticketCode</span>
-      Ticket category:<span th:text="${ticket.country}">Default country</span>
-      Ticket price:<span th:text="${ticket.price}">Default price</span>
-      Ticket user id:<span th:text="${ticket.userID}">Default user id</span>
-      Ticket username:<span th:text="${ticket.username}">Default username</span>
-      Ticket event:<span th:text="${ticket.event}">Default event</span>
-      
+    <div class="tables">
+        Ticket code:<span th:text="${ticket.code}">Default code</span>
+        Price:<span th:text="${ticket.price}">Default price</span>
+        User email:<span th:text="${ticket.useremail}">Default user email</span>
+        Event name:<span th:text="${ticket.eventname}">Default eventname</span>
+        Category:<span th:text="${ticket.category}">Default category</span>
+
     </div>
 
 </body>

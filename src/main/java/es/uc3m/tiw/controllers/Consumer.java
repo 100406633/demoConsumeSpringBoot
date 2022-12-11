@@ -180,6 +180,7 @@ public class Consumer {
 		model.addAttribute("event", ev);
 		return "viewEvent";
 	}
+
 	@RequestMapping (value = "pagina-search-upd-evento", method = RequestMethod.POST)
 	public String searchUpdEventos(Model model,@RequestParam Integer eventid) {
 		Event ev = restTemplate.getForObject("http://localhost:11403/events/{name}", Event.class, eventid);
@@ -197,7 +198,7 @@ public class Consumer {
 	public String index_t(){
 		return "index_tickets";
 	}
-/*
+
 	@RequestMapping (value = "pagina-crear-ticket", method = RequestMethod.GET)
 	public String mostrarElFormularioDelticket(Model modelo){
 		modelo.addAttribute("ticket", new Ticket());
@@ -233,10 +234,14 @@ public class Consumer {
 	@RequestMapping (value = "pagina-todos-tickets", method = RequestMethod.GET)
 	public String returnTodostickets(Model model) {
 		Ticket[] listaTk = restTemplate.getForObject("http://localhost:11402/tickets", Ticket[].class);
+		for (Ticket ti : listaTk) {
+			ti.setUseremail(ti.getUser().getEmail());
+			ti.setEventname(ti.getEvent().getName());
+			ti.setCategory(ti.getEvent().getCategory());
+		}
 		model.addAttribute("ticketList", listaTk);
 		return "viewAllTickets";
 	}
-
 	@RequestMapping (value = "pagina-post-ticket", method = RequestMethod.POST)
 	public String saveTicket(Model model, @ModelAttribute Ticket tk,@RequestParam Integer id, @RequestParam Integer idev) {
 		User us = restTemplate.getForObject("http://localhost:11400/users/{id}", User.class, id);
@@ -251,13 +256,24 @@ public class Consumer {
 	@RequestMapping (value = "pagina-delete-ticket", method={RequestMethod.POST, RequestMethod.DELETE})
 	public String deleteTicket(@RequestParam String ticket_id){
 		System.out.println("ticket id : " +ticket_id);
-		Ticket delTicket = restTemplate.getForObject("http://localhost:11402/tickets/{name}", Ticket.class, ticket_id);
+		Ticket delTicket = restTemplate.getForObject("http://localhost:11402/tickets/{id}", Ticket.class, ticket_id);
+
 		if (delTicket != null) {
+			System.out.println("ticket code : " +delTicket.getCode());
 			restTemplate.delete("http://localhost:11402/tickets/{id}", ticket_id);
 			return "index_tickets";
 		}else{
 			return "error";
 		}
+	}
+	@RequestMapping (value = "pagina-search-ticket", method = RequestMethod.POST)
+	public String searchtickets(Model model, @RequestParam Integer ticket_id) {
+		Ticket ti = restTemplate.getForObject("http://localhost:11402/tickets/{id}", Ticket.class, ticket_id);
+		model.addAttribute("ticket", ti);
+		ti.setUseremail(ti.getUser().getEmail());
+		ti.setEventname(ti.getEvent().getName());
+		ti.setCategory(ti.getEvent().getCategory());
+		return "viewTicket";
 	}
 
 	@RequestMapping (value = "pagina-search-upd-ticket", method = RequestMethod.POST)
@@ -272,5 +288,5 @@ public class Consumer {
 	public String updateTicket(Model model, @ModelAttribute Ticket tk){
 		restTemplate.put("http://localhost:11402/tickets/{id}", tk, Ticket.class);
 		return "index_tickets";
-	}*/
+	}
 }

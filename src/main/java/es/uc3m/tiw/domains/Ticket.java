@@ -2,20 +2,21 @@ package es.uc3m.tiw.domains;
 
 
 public class Ticket {
-	Integer id;
+	Integer ticket_id;
 	String code;
 	Double price;
+	String useremail;
 	//String userid;
-	//Integer eventid;
+	String eventname;
 	User user;
 	Event event;
-	//String category;
-public Integer getId() {
-		return id;
+	String category;
+public Integer getTicket_id() {
+		return ticket_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setTicket_id(Integer ticket_id) {
+		this.ticket_id = ticket_id;
 	}
 
 	public String getCode() {
@@ -36,25 +37,23 @@ public Integer getId() {
 	public User getUser() {
 		return user;
 	}
-	/*public String getuserid() {
-		return user.getEmail();
+	public String getUseremail() {
+		return useremail;
 	}
-	public String getuserid() {
-		return userid;
-	}*/
+	public void setUseremail(String useremail) {
+		this.useremail=useremail;
+	}
 	public void setUser(User user) {
 		this.user = user;
 	}
-	/*public void setuserid(String userid) {
-		this.userid = userid;
-	}*/
+
 	public Event getEvent() { return event; }
-	/*public Integer getEventid() { return eventid; }*/
+	public String getEventname() { return eventname; }
 	public void setEvent(Event event) {
 		this.event = event;
 	}
-	/*public void setEventid(Integer eventid) {
-		this.eventid = eventid;
+	public void setEventname(String eventname) {
+		this.eventname = eventname;
 	}
 
 	public void setCategory(String category) {
@@ -62,5 +61,5 @@ public Integer getId() {
 	}
 	public String getCategory() {
 		return category;
-	}*/
+	}
 }

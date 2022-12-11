@@ -12,19 +12,19 @@
   <div class="all_tables">
   <table>
     <tr>
-      <th>Ticket id</th>
+
       <th>Ticket code</th>
       <th>Price</th>
       <th>User email</th>
-     <th>Event</th>
+     <th>Event name</th>
      <th>Category</th>
    </tr>
    <tr th:each="ticket : ${ticketList}">
-     <td th:text="${ticket.id}">Default id</td>
+
      <td th:text="${ticket.code}">Default ticketCode</td>
      <td th:text="${ticket.price}">Default price</td>
-     <td th:text="${ticket.userEmail}">Default user email</td>
-     <td th:text="${ticket.eventid}">Default event</td>
+     <td th:text="${ticket.useremail}"></td>
+     <td th:text="${ticket.eventname}">Default event</td>
      <td th:text="${ticket.category}">Default category</td>
 	    
     </tr></table>
