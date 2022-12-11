@@ -160,7 +160,7 @@ public class Consumer {
 	public String saveEvent(Model model, @ModelAttribute Event ev) {
 		Event newEvent = restTemplate.postForObject("http://localhost:11403/events", ev, Event.class);
 		model.addAttribute("evento", ev);
-		return "viewAllEvents";
+		return "index_events";
 	}
 
 	@RequestMapping (value = "pagina-delete-evento", method={RequestMethod.POST, RequestMethod.DELETE})
