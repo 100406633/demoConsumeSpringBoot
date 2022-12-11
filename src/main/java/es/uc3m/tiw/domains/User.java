@@ -33,12 +33,12 @@ public class User implements Serializable {
 
 	public User() {
 	}
-	public Integer getIduser() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setIduser(Integer iduser) {
-		this.id = iduser;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {

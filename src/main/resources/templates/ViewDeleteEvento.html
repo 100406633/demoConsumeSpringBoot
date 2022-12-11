@@ -10,7 +10,7 @@
 <div class="delete"><H2>Delete event</H2>
 	<form th:action="@{/pagina-delete-evento}" method="post">
 		<label>event id: </label>
-		<input type="text" th:value="${eventid}" name="eventid">
+		<input type="text" th:value="${id}" name="id">
 		<input type="submit" value="Delete">
 	</form>
 </div>

@@ -19,7 +19,7 @@
 <div class="update_us"><H2>Update user</H2>
     <form th:action="@{/pagina-update-usuario}" th:object="${usuario}" method="post">
         <label id="id">User id of the user to update:</label>
-        <input type="text" th:field="*{iduser}" value="Prueba"><br>
+        <input type="text" th:field="*{id}" value="Prueba"><br>
         <label id="up_us">User name:</label>
         <input type="text" th:field="*{name}" value="Prueba">
         <label >Surname:</label>

@@ -4,7 +4,7 @@ package es.uc3m.tiw.domains;
 import java.util.Set;
 
 public class Event {
-	Integer eventid;
+	Integer id;
 	String name;
 	String venue;
 	String city;
@@ -15,12 +15,12 @@ public class Event {
 	Set<Ticket> tickets;
 
 
-	public Integer getEventid() {
-		return eventid;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setEventid(Integer eventid) {
-		this.eventid = eventid;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {

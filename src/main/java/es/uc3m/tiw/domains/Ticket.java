@@ -5,12 +5,16 @@ public class Ticket {
 	Integer ticket_id;
 	String code;
 	Double price;
+	String type;
 	String useremail;
-	//String userid;
+	Integer userid;
+	Integer eventid;
 	String eventname;
 	User user;
 	Event event;
 	String category;
+
+
 public Integer getTicket_id() {
 		return ticket_id;
 	}
@@ -43,6 +47,18 @@ public Integer getTicket_id() {
 	public void setUseremail(String useremail) {
 		this.useremail=useremail;
 	}
+	public Integer getUserid() {
+		return userid;
+	}
+	public void setUserid(Integer userid) {
+		this.userid=userid;
+	}
+	public Integer getEventid() {
+		return eventid;
+	}
+	public void setEventid(Integer eventid) {
+		this.eventid=eventid;
+	}
 	public void setUser(User user) {
 		this.user = user;
 	}
@@ -61,5 +77,13 @@ public Integer getTicket_id() {
 	}
 	public String getCategory() {
 		return category;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }

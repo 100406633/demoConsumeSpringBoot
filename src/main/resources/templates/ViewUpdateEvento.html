@@ -13,7 +13,7 @@
 <div class="search"><H2>Search event to update: </H2>
     <form th:action="@{/pagina-search-upd-evento}" method="post">
         <label>event id:</label>
-        <input type="text" th:value="${eventid}" name="eventid">
+        <input type="text" th:value="${id}" name="id">
         <input type="submit" value="Search" />
     </form>
 </div>
@@ -22,7 +22,7 @@
 <div id="update" class="update_ev"><H2>Update event</H2>
     <form th:action="@{/pagina-update-evento}" th:object="${event}" method="post">
         <label id="id">Event id of the event to update:</label>
-        <input type="text" th:field="*{eventid}" value=""><br>
+        <input type="text" th:field="*{id}" value=""><br>
         <label >event name:</label>
         <input type="text" th:field="*{name}">
         <label >event venue:</label>

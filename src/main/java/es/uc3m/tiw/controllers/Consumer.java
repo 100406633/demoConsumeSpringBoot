@@ -1,9 +1,7 @@
 
 package es.uc3m.tiw.controllers;
 
-import es.uc3m.tiw.domains.Event;
-import es.uc3m.tiw.domains.User;
-import es.uc3m.tiw.domains.Ticket;
+import es.uc3m.tiw.domains.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -91,18 +89,18 @@ public class Consumer {
 	}
 	@RequestMapping (value = "pagina-delete-usuario", method={RequestMethod.POST, RequestMethod.DELETE})
 	public String deleteUser(@RequestParam Integer id){
-		User delUser = restTemplate.getForObject("http://localhost:11400/users/{id}", User.class, id);
-		if (delUser != null) {
-			restTemplate.delete("http://localhost:11400/users/{id}", id);
-			return "index_users";
-		}else{
-			return "error";
-		}
+		//User delUser = restTemplate.getForObject("http://localhost:11400/users/{id}", User.class, id);
+		//if (delUser != null)
+		System.out.println("id: "+id);
+		restTemplate.delete("http://localhost:11400/users/{id}", id);
+		return "index_users";
+		//}else{
+		//	return "error";
+		//}
 	}
 	@RequestMapping (value = "pagina-update-usuario", method={RequestMethod.POST, RequestMethod.PUT})
 	public String updateUser(Model model, @ModelAttribute User us){
-		System.out.println("id" + us.getIduser() + "name" + us.getName());
-		restTemplate.put("http://localhost:11400/users/{id}", us, us.getIduser());
+		restTemplate.put("http://localhost:11400/users/{id}", us, us.getId());
 		return "index_users";
 	}
 
@@ -164,32 +162,28 @@ public class Consumer {
 	}
 
 	@RequestMapping (value = "pagina-delete-evento", method={RequestMethod.POST, RequestMethod.DELETE})
-	public String deleteEvent( @RequestParam String eventid){
-		Event delEvent = restTemplate.getForObject("http://localhost:11403/events/{name}", Event.class, eventid);
-		if (delEvent != null) {
-			restTemplate.delete("http://localhost:11403/events/{id}", eventid);
-			return "index_events";
-		}else{
-		return "error";
-		}
+	public String deleteEvent( @RequestParam String id){
+		restTemplate.delete("http://localhost:11403/events/{id}", id);
+		return "index_events";
+
 	}
 
 	@RequestMapping (value = "pagina-search-evento", method = RequestMethod.POST)
-	public String searcheventos(Model model, @RequestParam Integer eventid) {
-		Event ev = restTemplate.getForObject("http://localhost:11403/events/{name}", Event.class, eventid);
+	public String searcheventos(Model model, @RequestParam Integer id) {
+		Event ev = restTemplate.getForObject("http://localhost:11403/events/{name}", Event.class, id);
 		model.addAttribute("event", ev);
 		return "viewEvent";
 	}
 
 	@RequestMapping (value = "pagina-search-upd-evento", method = RequestMethod.POST)
-	public String searchUpdEventos(Model model,@RequestParam Integer eventid) {
-		Event ev = restTemplate.getForObject("http://localhost:11403/events/{name}", Event.class, eventid);
+	public String searchUpdEventos(Model model,@RequestParam Integer id) {
+		Event ev = restTemplate.getForObject("http://localhost:11403/events/{name}", Event.class, id);
 		model.addAttribute("event", ev);
 		return "viewUpdateEvento";
 	}
 	@RequestMapping (value = "pagina-update-evento", method={RequestMethod.POST, RequestMethod.PUT})
 	public String updateEvent(Model model, @ModelAttribute Event ev){
-		restTemplate.put("http://localhost:11403/events/{name}", ev, ev.getEventid());
+		restTemplate.put("http://localhost:11403/events/{name}", ev, ev.getId());
 		return "index_events";
 	}
 
@@ -243,23 +237,18 @@ public class Consumer {
 		return "viewAllTickets";
 	}
 	@RequestMapping (value = "pagina-post-ticket", method = RequestMethod.POST)
-	public String saveTicket(Model model, @ModelAttribute Ticket tk,@RequestParam Integer id, @RequestParam Integer idev) {
-		User us = restTemplate.getForObject("http://localhost:11400/users/{id}", User.class, id);
-		Event ev = restTemplate.getForObject("http://localhost:11403/events/{id}", Event.class, idev);
-		Ticket newTicket = restTemplate.postForObject("http://localhost:11402/tickets", tk, Ticket.class);
-		newTicket.setUser(us);
-		newTicket.setEvent(ev);
+	public String saveTicket(Model model, @ModelAttribute Ticket tk) {
+		System.out.println("userid: "+ tk.getUserid() + "ev id: " +tk.getEventid());
+		restTemplate.postForObject("http://localhost:11402/tickets", tk , Ticket.class);
 		model.addAttribute("ticket", tk);
 		return "index_tickets";
-	}
 
+	}
 	@RequestMapping (value = "pagina-delete-ticket", method={RequestMethod.POST, RequestMethod.DELETE})
 	public String deleteTicket(@RequestParam String ticket_id){
-		System.out.println("ticket id : " +ticket_id);
 		Ticket delTicket = restTemplate.getForObject("http://localhost:11402/tickets/{id}", Ticket.class, ticket_id);
 
 		if (delTicket != null) {
-			System.out.println("ticket code : " +delTicket.getCode());
 			restTemplate.delete("http://localhost:11402/tickets/{id}", ticket_id);
 			return "index_tickets";
 		}else{
@@ -278,15 +267,26 @@ public class Consumer {
 
 	@RequestMapping (value = "pagina-search-upd-ticket", method = RequestMethod.POST)
 	public String searchUPDtickets(Model model, @RequestParam Integer ticket_id) {
-		Ticket tk = restTemplate.getForObject("http://localhost:11402/tickets/{name}", Ticket.class, ticket_id);
-		model.addAttribute("ticket", tk);
+		Ticket2 ti2 = restTemplate.getForObject("http://localhost:11402/tickets/{id}", Ticket2.class, ticket_id);
+		System.out.println(ti2.getUser().getId());
+		Ticket ti = new Ticket();
+		ti.setTicket_id(ti2.getId());
+		ti.setCode(ti2.getCode());
+		ti.setType(ti2.getType());
+		ti.setPrice(ti2.getPrice());
+		ti.setUserid(ti2.getUser().getId());
+		ti.setEventid(ti2.getEvent().getId());
+		ti.setCategory(ti2.getEvent().getCategory());
+		model.addAttribute("ticket", ti);
 		return "viewUpdateticket";
 
 	}
 
 	@RequestMapping (value = "pagina-update-ticket", method={RequestMethod.POST, RequestMethod.PUT})
 	public String updateTicket(Model model, @ModelAttribute Ticket tk){
-		restTemplate.put("http://localhost:11402/tickets/{id}", tk, Ticket.class);
+		System.out.println(tk.getTicket_id());
+
+		restTemplate.put("http://localhost:11402/tickets/{id}", tk, tk.getTicket_id());
 		return "index_tickets";
 	}
 }

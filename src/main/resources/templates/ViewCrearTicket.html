@@ -13,11 +13,13 @@
 		<input type="text" th:field="*{code}">
 		<label >ticket price:</label>
 		<input type="text" th:field="*{price}">
+		<label >event type:</label>
+		<input type="text" th:field="*{type}">
 		<label id="ct">owner user id:</label>
-		<input type="text" name="userid">
+		<input type="text" th:field="*{userid}">
 		<label >event id:</label>
-		<input type="text" name="eventid">
->
+		<input type="text" th:field="*{eventid}">
+
 
 		<input type="submit" value="Create" />
 	</form>
