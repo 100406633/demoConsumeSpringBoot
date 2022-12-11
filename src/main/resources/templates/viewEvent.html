@@ -16,6 +16,7 @@
       Event country:<span th:text="${event.country}">Default country</span>
       Event date:<span th:text="${event.date}">Default date</span>
       Event image:<span th:text="${event.image}">Default image</span>
+      <span> <img id="image" th:src="@{'data:image/png;base64,'+${event.getDecode64()}}"></span>
       Event category:<span th:text="${event.category}">Default category</span>
 
   </div>

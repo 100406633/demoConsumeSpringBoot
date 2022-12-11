@@ -20,7 +20,7 @@
 
 
 <div id="update" class="update_ev"><H2>Update event</H2>
-    <form th:action="@{/pagina-update-evento}" th:object="${event}" method="post">
+    <form enctype="multipart/form-data" th:action="@{/pagina-update-evento}" th:object="${event}" method="post">
         <label id="id">Event id of the event to update:</label>
         <input type="text" th:field="*{id}" value=""><br>
         <label >event name:</label>

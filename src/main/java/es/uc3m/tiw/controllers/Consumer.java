@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.Part;
+
 
 @Controller
 public class Consumer {
@@ -155,7 +157,24 @@ public class Consumer {
 
 
 	@RequestMapping (value = "pagina-post-evento", method = RequestMethod.POST)
-	public String saveEvent(Model model, @ModelAttribute Event ev) {
+	public String saveEvent(Model model, @RequestParam String name, @RequestParam String category,
+							@RequestParam String city, @RequestParam String venue,  @RequestParam String country,@RequestParam String date,
+							@RequestParam Part image) {
+		Event ev = new Event();
+		ev.setName(name);
+		ev.setCategory(category);
+		ev.setCountry(country);
+		ev.setCity(city);
+		ev.setVenue(venue);
+		ev.setDate(date);
+		try {
+			byte[] data = new byte[(int) image.getSize()];
+			image.getInputStream().read(data, 0, data.length);
+			ev.setImage(data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		Event newEvent = restTemplate.postForObject("http://localhost:11403/events", ev, Event.class);
 		model.addAttribute("event", ev);
 		return "index_events";
@@ -182,10 +201,28 @@ public class Consumer {
 		return "viewUpdateEvento";
 	}
 	@RequestMapping (value = "pagina-update-evento", method={RequestMethod.POST, RequestMethod.PUT})
-	public String updateEvent(Model model, @ModelAttribute Event ev){
+	public String updateEvent(Model model, @RequestParam Integer id, @RequestParam String name, @RequestParam String category,
+							  @RequestParam String city, @RequestParam String venue,  @RequestParam String country,@RequestParam String date,
+							  @RequestParam Part image){
+		Event ev = new Event();
+		ev.setId(id);
+		ev.setName(name);
+		ev.setCategory(category);
+		ev.setCountry(country);
+		ev.setCity(city);
+		ev.setVenue(venue);
+		ev.setDate(date);
+		try {
+			byte[] data = new byte[(int) image.getSize()];
+			image.getInputStream().read(data, 0, data.length);
+			ev.setImage(data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		restTemplate.put("http://localhost:11403/events/{name}", ev, ev.getId());
 		return "index_events";
 	}
+
 
 	//****************************************TICKET***************************************
 	@RequestMapping("/t")
