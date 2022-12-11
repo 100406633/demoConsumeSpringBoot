@@ -40,14 +40,35 @@
     grid-template-columns: auto auto;
     font-size: 175%;
     justify-content: center;
-
-    background-color: aliceblue;
     border-collapse: separate;
     border-spacing: 50px 0;
+    background-color: aliceblue;
 }
+
+
 
 .all_tables tr{
     column-gap: 15%;
 
 }
 
+.l{
+    text-decoration:none;
+    width: 15%;
+    display: inline-flex;
+    justify-content: center;
+    background: #008db1;
+    margin-left: 12%;
+    margin-right: auto;
+    padding: 1%;
+    border-radius: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    font-weight: bolder;
+    font-size: 120%;
+}
+#h{
+    background-color: white;
+}

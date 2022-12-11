@@ -28,7 +28,8 @@
 	    <td th:text="${event.city}">Default city</td>
 	    <td th:text="${event.country}">Default country</td>
 	    <td th:text="${event.date}">Default date</td>
-	    <td th:text="${event.image}">Default image</td>
+
+        <td><img id="image" th:src="@{'data:image/png;base64,'+${event.getDecode64()}}"></td>
         <td th:text="${event.category}">Default category</td>
     </tr>
     </table>

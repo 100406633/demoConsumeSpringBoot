@@ -1,6 +1,8 @@
 package es.uc3m.tiw.domains;
 
 
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.Set;
 
 public class Event {
@@ -81,6 +83,17 @@ public class Event {
 
 	public Set<Ticket> getTickets() {
 		return this.tickets;
+	}
+
+	public String getDecode64() throws UnsupportedEncodingException {
+		if (getImage().length!=0) {
+			byte[] encodeBase64 = Base64.getEncoder().encode(getImage());
+			String s = new String(encodeBase64, "UTF-8");
+			return s;
+		}
+		else {
+			return "";
+		}
 	}
 }
 

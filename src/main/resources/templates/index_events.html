@@ -8,7 +8,17 @@
 	<link rel="stylesheet" th:href="@{/css/view1.css}">
 </head>
 <body>
-<h1 id="page_title">ADMINISTER USERS IN TICKETSELL</h1><br>
+<div id="h">
+
+	<a class="l" href="/u">Manage users</a>
+
+	<a class="l" href="/e">Manage Events</a>
+
+	<a class="l" href="/t">Manage Tickets</a>
+
+</div>
+<h1 id="page_title">ADMINISTER EVENTS IN TICKETSELL</h1><br>
+
 
 <div class="search"><H2>Search event by id</H2>
 	<form th:action="@{/pagina-search-evento}" method="post">
