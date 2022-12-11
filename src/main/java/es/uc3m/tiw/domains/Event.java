@@ -1,7 +1,6 @@
 package es.uc3m.tiw.domains;
 
 
-import java.time.LocalDate;
 import java.util.Set;
 
 public class Event {
@@ -10,7 +9,7 @@ public class Event {
 	String venue;
 	String city;
 	String country;
-	LocalDate date;
+	String date;
 	String category;
 	byte[] image;
 	Set<Ticket> tickets;
@@ -56,11 +55,11 @@ public class Event {
 		this.country = country;
 	}
 
-	public LocalDate getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
